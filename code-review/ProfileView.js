@@ -43,8 +43,8 @@ class ProfileView extends View{
           browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[1]').click();
       }else if(tab == "sold"){
           browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[2]').waitForVisible();
-          browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[1]').click();
-      }else if(tab == "sold"){
+          browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[2]').click();
+      }else if(tab == "favorite"){
           browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[3]').waitForVisible();
           browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[3]').click();
       }else{
