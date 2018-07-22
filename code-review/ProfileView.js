@@ -74,4 +74,19 @@ class ProfileView extends View{
         navigateTo("selling");
         expect(privateItemById.isExisting()).to.be.true;
     }
+
+    goBack(buttonId){
+        expect(itemDetailView[buttonId].isVisible()).to.be.true;
+        itemDetailView[buttonId].click();
+    }
+
+    goBackFromSoldView(){
+        expect(itemDetailView.sellAgainBtn.isVisible()).to.be.true;
+        itemDetailView.backBtn.click();
+    }
+    
+    goBackFromActiveView(){
+        expect(itemDetailView.markAsSoldBtn.isVisible()).to.be.true;
+        itemDetailView.backBtn.click();
+    }
 }
