@@ -36,19 +36,42 @@ class ProfileView extends View{
         this.confirmLogOutBtn.waitForExist();
         this.confirmLogOutBtn.click();
     }
-
+ 
     navigateTo(tab) {
-      if(tab == "selling") {
-          browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[1]').waitForVisible();
-          browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[1]').click();
-      }else if(tab == "sold"){
-          browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[2]').waitForVisible();
-          browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[2]').click();
-      }else if(tab == "favorite"){
-          browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[3]').waitForVisible();
-          browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[3]').click();
-      }else{
-          return
-      }
+
+        switch(tab) {
+            case "selling":
+                browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[1]').waitForVisible();
+                browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[1]').click();
+                break;
+            case "sold":
+                browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[2]').waitForVisible();
+                browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[2]').click();
+                break;
+            case "favorites":
+                browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[3]').waitForVisible();
+                browser.element('(//*[@resource-id="com.abtnprojects.ambatana.stagin:id/user_profile_tab_layout"]/*/*)[3]').click();
+                break;
+            default:
+                return;
+        }
+    }
+
+    checkItemHasBeenSold() {
+        soldTab.waitForVisible();
+        dismissRateApp();
+        expect(privateItemById.isExisting()).to.be.false;
+        navigateTo("sold");
+        dismissRateApp();
+        expect(privateItemById.isExisting()).to.be.true;
+        browser.pause(5000)
+        dismissRateApp();
+    }
+
+    checkItemIsInSellingTab() {
+        soldTab.waitForVisible();
+        expect(privateItemById.isExisting()).to.be.false;
+        navigateTo("selling");
+        expect(privateItemById.isExisting()).to.be.true;
     }
 }
