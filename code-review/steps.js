@@ -1,6 +1,6 @@
 import cucumber         from 'cucumber'; 
 import itemDetailView   from '.../model/ItemDetailView'
-import profileView    from '.../model/ProfileView'
+import profileView      from '.../model/ProfileView'
 
 let expect = require('chai').expect; 
 
@@ -12,20 +12,20 @@ cucumber.defineSupportCode(function ({Given, Then, When}) {
 
     When(/^I sell item again/, function(){
         profileView.dismissRateApp();
-         itemDetailView.markAsSold();
+        itemDetailView.markAsSold();
     });
 
     Then(/^I see item has been sold/, function(){
         expect(itemDetailView.sellAgainBtn.isVisible()).to.be.true;
-         itemDetailView.backBtn.click();
+        itemDetailView.backBtn.click();
         profileView.soldTab.waitForVisible();
-         profileView.dismissRateApp();
+        profileView.dismissRateApp();
         expect(profileView.privateItemById.isExisting()).to.be.false;
         profileView.navigateTo("sold");
         profileView.dismissRateApp();
-         expect(profileView.privateItemById.isExisting()).to.be.true;
+        expect(profileView.privateItemById.isExisting()).to.be.true;
         browser.pause(5000)
-         profileView.dismissRateApp();
+        profileView.dismissRateApp();
     });
 
     Then(/^I see item in selling tab/, function(){
@@ -38,4 +38,3 @@ cucumber.defineSupportCode(function ({Given, Then, When}) {
     });
 
 });
-
