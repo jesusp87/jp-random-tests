@@ -90,3 +90,4 @@ class ProfileView extends View{
         itemDetailView.backBtn.click();
     }
 }
+#to compare
